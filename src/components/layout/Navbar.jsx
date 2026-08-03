@@ -1,7 +1,10 @@
 import { NavLink } from 'react-router-dom'
 import Icon from '@/components/ui/Icon.jsx'
 
-const navLinks = [{ to: '/', label: 'Inicio' }]
+const navLinks = [
+  { to: '/', label: 'Inicio' },
+  { to: '/ejercicios', label: 'Ejercicios' },
+]
 
 // Barra de navegación principal con enlaces semánticos.
 export default function Navbar() {

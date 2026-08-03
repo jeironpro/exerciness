@@ -8,7 +8,7 @@ const ExerciseVideo = ({ exercise }) => {
 
   return (
     <figure className="flex flex-col items-center gap-3">
-      <div className="w-full max-w-sm overflow-hidden rounded-lg border border-border bg-surface-alt">
+      <div className="w-full max-w-[280px] overflow-hidden rounded-lg border border-border bg-surface-alt">
         {playing ? (
           <img
             src={exercise.gif_url}

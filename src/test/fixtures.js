@@ -11,6 +11,7 @@ export const exerciseFixture = (overrides = {}) => ({
   gif_url: '/videos/0001-2gPfomN.gif',
   instructions: { es: 'Túmbate sobre tu espalda con las rodillas flexionadas.' },
   instruction_steps: { es: ['Túmbate boca arriba.', 'Sube el torso hacia delante.'] },
+  attribution: '© Gym visual — https://gymvisual.com/',
   ...overrides,
 })
 

@@ -3,6 +3,7 @@ import Layout from '@/components/layout/Layout.jsx'
 import ErrorBoundary from '@/components/common/ErrorBoundary.jsx'
 import Home from '@/pages/Home.jsx'
 import Exercises from '@/pages/Exercises.jsx'
+import ExerciseDetail from '@/pages/ExerciseDetail.jsx'
 import NotFound from '@/pages/NotFound.jsx'
 
 // Definición central de rutas de la aplicación.
@@ -14,6 +15,7 @@ export const router = createBrowserRouter([
     children: [
       { index: true, element: <Home /> },
       { path: 'ejercicios', element: <Exercises /> },
+      { path: 'ejercicio/:id', element: <ExerciseDetail /> },
       { path: '*', element: <NotFound /> },
     ],
   },

@@ -6,6 +6,7 @@ const navLinks = [
   { to: '/', label: 'Inicio' },
   { to: '/ejercicios', label: 'Ejercicios' },
   { to: '/favoritos', label: 'Favoritos' },
+  { to: '/comparar', label: 'Comparar' },
 ]
 
 // Barra de navegación principal con enlaces semánticos y contador de favoritos.

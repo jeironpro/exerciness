@@ -5,6 +5,7 @@ import Home from '@/pages/Home.jsx'
 import Exercises from '@/pages/Exercises.jsx'
 import ExerciseDetail from '@/pages/ExerciseDetail.jsx'
 import Favorites from '@/pages/Favorites.jsx'
+import Compare from '@/pages/Compare.jsx'
 import NotFound from '@/pages/NotFound.jsx'
 
 // Definición central de rutas de la aplicación.
@@ -18,6 +19,7 @@ export const router = createBrowserRouter([
       { path: 'ejercicios', element: <Exercises /> },
       { path: 'ejercicio/:id', element: <ExerciseDetail /> },
       { path: 'favoritos', element: <Favorites /> },
+      { path: 'comparar', element: <Compare /> },
       { path: '*', element: <NotFound /> },
     ],
   },

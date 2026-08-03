@@ -1,0 +1,5 @@
+/* Clase base .btn: partes compartidas por todos los botones.
+   Las variantes (color) y tamaños se aplican con utilities en el componente. */
+.btn {
+  @apply inline-flex select-none items-center justify-center gap-2 rounded-md font-medium transition-colors disabled:pointer-events-none disabled:opacity-50;
+}

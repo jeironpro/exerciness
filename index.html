@@ -22,6 +22,16 @@
     <meta property="og:image" content="/og-image.png" />
     <meta property="og:type" content="website" />
     <title>exerciness</title>
+    <script>
+      ;(function () {
+        // Aplica el tema persistido antes del primer render para evitar un flash.
+        var stored = localStorage.getItem('exerciness-theme')
+        var dark = stored
+          ? JSON.parse(stored).state.theme === 'dark'
+          : window.matchMedia('(prefers-color-scheme: dark)').matches
+        if (dark) document.documentElement.classList.add('dark')
+      })()
+    </script>
   </head>
   <body>
     <div id="root"></div>

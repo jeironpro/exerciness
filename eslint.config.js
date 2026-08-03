@@ -9,7 +9,15 @@ import jsxA11y from 'eslint-plugin-jsx-a11y'
 // Combina reglas recomendadas de JS, React, hooks y accesibilidad.
 export default [
   {
-    ignores: ['dist', 'coverage', 'node_modules', 'public', 'exercises-dataset-main'],
+    ignores: [
+      'dist',
+      'coverage',
+      'node_modules',
+      'public',
+      'exercises-dataset-main',
+      '.agents',
+      'test/fixtures',
+    ],
   },
   js.configs.recommended,
   {

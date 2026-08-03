@@ -55,6 +55,14 @@ El script `yarn data:sync` copia `data/exercises.json`, `images/` y `videos/` a
 `public/`, que sí está versionado para que el build de CI no dependa del dataset
 local.
 
+Los GIFs se optimizan con `yarn media:optimize` (`scripts/optimize-media.py`):
+calcula el bounding box del contenido animado (los lienzos de origen son 180×180
+con grandes márgenes muertos) y lo recorta con ImageMagick conservando la
+animación y su delta-coding. Esto permite mostrarlos a un tamaño mayor sin
+escalado excesivo y reduce el peso de `public/videos`. Es idempotente (solo
+procesa lienzos 180×180) y deja el dataset fuente intacto. Requiere
+Python 3 + Pillow e ImageMagick.
+
 ### 3.1 Estructura del dataset
 
 1.324 registros. Los campos relevantes de cada ejercicio:
@@ -179,14 +187,15 @@ siguen el flujo por tickets del apartado siguiente.
 
 ## 11. Scripts
 
-| Script               | Descripción                       |
-| -------------------- | --------------------------------- |
-| `yarn dev`           | Servidor de desarrollo            |
-| `yarn build`         | Build de producción en `dist/`    |
-| `yarn preview`       | Sirve el build localmente         |
-| `yarn data:sync`     | Sincroniza el dataset a `public/` |
-| `yarn lint`          | ESLint sobre todo el repo         |
-| `yarn format`        | Prettier --write                  |
-| `yarn format:check`  | Verifica el formato               |
-| `yarn test`          | Vitest run                        |
-| `yarn test:coverage` | Vitest con cobertura              |
+| Script                | Descripción                       |
+| --------------------- | --------------------------------- |
+| `yarn dev`            | Servidor de desarrollo            |
+| `yarn build`          | Build de producción en `dist/`    |
+| `yarn preview`        | Sirve el build localmente         |
+| `yarn data:sync`      | Sincroniza el dataset a `public/` |
+| `yarn media:optimize` | Recorta los GIFs a su contenido   |
+| `yarn lint`           | ESLint sobre todo el repo         |
+| `yarn format`         | Prettier --write                  |
+| `yarn format:check`   | Verifica el formato               |
+| `yarn test`           | Vitest run                        |
+| `yarn test:coverage`  | Vitest con cobertura              |

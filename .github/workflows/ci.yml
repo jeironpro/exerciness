@@ -15,14 +15,14 @@ jobs:
       - name: Checkout del código
         uses: actions/checkout@v4
 
+      - name: Activar Corepack
+        run: corepack enable
+
       - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: yarn
-
-      - name: Activar Corepack
-        run: corepack enable
 
       - name: Instalar dependencias
         run: yarn install --immutable

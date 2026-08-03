@@ -1,128 +1,127 @@
-# Libro de estilo de exerciness
+# Libro de estilo de exerciness — Hum
 
-Este documento es la fuente de verdad del diseño visual de **exerciness**. Define
-identidad, colores, tipografía, espaciado, radios, sombras, iconografía e
-inventario de componentes. Se debe cumplir en toda la aplicación.
+Locked design system. Generado desde `design.md`. Every page uses this system.
 
 ## 1. Identidad y marca
 
 - **Nombre**: exerciness
-- **Concepto**: energía, constancia y claridad. Diseño limpio que prioriza el
-  contenido (ejercicios) sobre la decoración.
-- **Idioma de la interfaz**: español.
-- **Iconografía**: Material Symbols Rounded (Google Icons). **Prohibido el uso
-  de emojis en el código**; cualquier símbolo se renderiza con el componente
-  `<Icon />`.
+- **Concepto**: energía cálida, amable, viva. Multi-accento Hum: pear + cyan + coral.
+- **Idioma**: español.
+- **Iconografía**: Material Symbols Rounded. Prohibido el uso de emojis en el código.
+- **Display**: Plus Jakarta Sans 600, tracking -0.025em.
+- **Body**: Plus Jakarta Sans 400.
+- **Mono**: JetBrains Mono (etiquetas, badges, stats en uppercase).
 
-## 2. Paleta de colores
+## 2. Paleta de colores (OKLCH)
 
-Los colores se declaran como tokens CSS en `src/styles/tokens.css` en tripletes
-RGB y se exponen a Tailwind con soporte de opacidad (`bg-primary/10`).
+Ver `src/styles/tokens.css` para los valores completos. Claro y oscuro se definen
+con OKLCH, mapeados en Tailwind vía `oklch(var(--color-*) / <alpha-value>)`.
 
-### 2.1 Tema claro
+| Token              | Claro (L C H) | Oscuro (L C H) | Uso                     |
+| ------------------ | ------------- | -------------- | ----------------------- |
+| `--color-paper`    | 97% 0.012 95  | 22% 0.010 250  | Fondo de página         |
+| `--color-paper-2`  | 94% 0.016 95  | 26% 0.012 250  | Fondos alternos         |
+| `--color-ink`      | 20% 0.012 250 | 92% 0.010 95   | Texto principal         |
+| `--color-ink-2`    | 35% 0.016 250 | 80% 0.015 95   | Texto secundario        |
+| `--color-rule`     | 85% 0.025 95  | 30% 0.012 250  | Bordes y separadores    |
+| `--color-accent`   | 86% 0.18 95   | 86% 0.18 95    | Acción primaria (pear)  |
+| `--color-accent-2` | 66% 0.18 235  | 66% 0.18 235   | Enlaces, hover (cyan)   |
+| `--color-accent-3` | 68% 0.24 18   | 68% 0.24 18    | Momento de alta energía |
+| `--color-mint`     | 80% 0.16 150  | 80% 0.16 150   | Éxito                   |
+| `--color-lavender` | 74% 0.16 305  | 74% 0.16 305   | Decoración ocasional    |
+| `--color-focus`    | 66% 0.18 235  | 70% 0.22 235   | Foco visible            |
 
-| Token                      | Valor                   | Uso                                   |
-| -------------------------- | ----------------------- | ------------------------------------- |
-| `--color-primary`          | `22 163 74` (#16a34a)   | Acciones principales, enlaces activos |
-| `--color-primary-hover`    | `21 128 61` (#15803d)   | Hover de acciones primarias           |
-| `--color-primary-contrast` | `255 255 255`           | Texto sobre fondo primario            |
-| `--color-surface`          | `255 255 255`           | Fondo de página y tarjetas            |
-| `--color-surface-alt`      | `248 250 252` (#f8fafc) | Fondos alternos, hover                |
-| `--color-border`           | `226 232 240` (#e2e8f0) | Bordes y separadores                  |
-| `--color-text`             | `15 23 42` (#0f172a)    | Texto principal                       |
-| `--color-text-muted`       | `100 116 139` (#64748b) | Texto secundario                      |
-| `--color-success`          | `22 163 74`             | Éxito                                 |
-| `--color-error`            | `220 38 38` (#dc2626)   | Error                                 |
-| `--color-warning`          | `217 119 6` (#d97706)   | Advertencia                           |
-| `--color-info`             | `2 132 199` (#0284c7)   | Información                           |
+### Reglas de acentos
 
-### 2.2 Tema oscuro (clase `.dark`)
-
-| Token                   | Valor                   | Uso                  |
-| ----------------------- | ----------------------- | -------------------- |
-| `--color-primary`       | `34 197 94` (#22c55e)   | Acciones principales |
-| `--color-primary-hover` | `22 163 74` (#16a34a)   | Hover                |
-| `--color-surface`       | `15 23 42` (#0f172a)    | Fondo de página      |
-| `--color-surface-alt`   | `30 41 59` (#1e293b)    | Fondos alternos      |
-| `--color-border`        | `51 65 85` (#334155)    | Bordes               |
-| `--color-text`          | `248 250 252` (#f8fafc) | Texto principal      |
-| `--color-text-muted`    | `148 163 184` (#94a3b8) | Texto secundario     |
-| `--color-success`       | `74 222 128` (#4ade80)  | Éxito                |
-| `--color-error`         | `248 113 113` (#f87171) | Error                |
-| `--color-warning`       | `251 191 36` (#fbbf24)  | Advertencia          |
-| `--color-info`          | `56 189 248` (#38bdf8)  | Información          |
-
-**Regla de contraste**: el texto sobre `surface` debe mantener contraste AA
-(4.5:1). El verde `--color-primary` en tema claro se reserva para fondos
-(sobre él siempre texto `primary-contrast`) o para iconos/acentos.
+1. Cada acento tiene su superficie: pear = acción primaria, cyan = hover/enlaces, coral = un único momento de alta energía por página.
+2. Sin gradientes entre acentos.
+3. Mint y lavender son ocasionales (máximo uno de cada por página).
+4. Sin blanco puro (paper siempre cream: 97% 0.012 95).
+5. Sin negro puro (ink siempre 20% 0.012 250 como mínimo).
 
 ## 3. Tipografía
 
-- **Familia**: pila del sistema (`system-ui`, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif).
-- **Escala**:
+- **Display / Body**: Plus Jakarta Sans (400/500/600/700). Rounded humanist sans.
+- **Mono**: JetBrains Mono (400/500) para labels en uppercase.
+- Sin serif en ninguna parte.
 
-| Rol                   | Tamaño                       | Peso     |
-| --------------------- | ---------------------------- | -------- |
-| Título de página (h1) | 2rem / 2.5rem (text-3xl/4xl) | Bold     |
-| Sección (h2)          | 1.5rem (text-2xl)            | Semibold |
-| Subsección (h3)       | 1.25rem (text-xl)            | Semibold |
-| Cuerpo                | 1rem (text-base)             | Normal   |
-| Texto secundario      | 0.875rem (text-sm)           | Normal   |
-| Etiqueta/caption      | 0.75rem (text-xs)            | Medium   |
+| Rol                   | Tamaño / clamp                  | Peso | Familia |
+| --------------------- | ------------------------------- | ---- | ------- |
+| Hero (Marquee)        | clamp(2.5rem, 6vw+1rem, 5.5rem) | 600  | Display |
+| Título de página (h1) | 2.25rem (text-3xl)              | 600  | Display |
+| Sección (h2)          | 1.5rem (text-2xl)               | 600  | Display |
+| Cuerpo                | 1rem (text-base)                | 400  | Body    |
+| Texto secundario      | 0.875rem (text-sm)              | 400  | Body    |
+| Etiqueta/caption      | 0.75rem (text-xs) + uppercase   | 400  | Mono    |
 
 ## 4. Espaciado
 
-Se usa la escala de Tailwind (base 0.25rem):
+Escala 4-point nombrada. Usar tokens CSS (`var(--space-md)`) o clases Tailwind equivalences.
 
-`p-1` (4px) · `p-2` (8px) · `p-3` (12px) · `p-4` (16px) · `p-6` (24px) · `p-8` (32px) · `p-12` (48px)
+`--space-3xs: 0.25rem` · `--space-2xs: 0.5rem` · `--space-xs: 0.75rem` ·
+`--space-sm: 1rem` · `--space-md: 1.5rem` · `--space-lg: 2rem` ·
+`--space-xl: 3rem` · `--space-2xl: 4.5rem` · `--space-3xl: 7rem`
 
-- Espaciado interno de tarjetas: `p-4` / `p-6`.
-- Separación vertical entre secciones: `py-12` / `py-16`.
-- Contenedor principal: `max-w-7xl` con padding lateral `px-4 sm:px-6 lg:px-8`.
+- Tarjetas: padding `p-4`.
+- Separación entre secciones: `py-12` / `py-16`.
+- Contenedor: `max-w-7xl` con padding lateral `px-4 sm:px-6 lg:px-8`.
 
 ## 5. Radios y sombras
 
-| Token                    | Valor  | Uso                          |
-| ------------------------ | ------ | ---------------------------- |
-| `rounded-sm`             | 4px    | Inputs, botones pequeños     |
-| `rounded` / `rounded-md` | 8px    | Botones, tarjetas, inputs    |
-| `rounded-lg`             | 12px   | Tarjetas destacadas, modales |
-| `rounded-full`           | 9999px | Badges, avatares             |
+| Token            | Valor | Uso                    |
+| ---------------- | ----- | ---------------------- |
+| `--radius-card`  | 20px  | Tarjetas, contenedores |
+| `--radius-pill`  | 999px | Botones, badges        |
+| `--radius-input` | 12px  | Inputs, selects        |
 
-Sombras (de Tailwind, adaptadas al token `--color-text`):
+| Sombra        | Valor                                           |
+| ------------- | ----------------------------------------------- |
+| `shadow-soft` | `0 12px 32px -16px oklch(20% 0.012 250 / 0.12)` |
+| `shadow-lift` | `0 16px 40px -12px oklch(20% 0.012 250 / 0.18)` |
 
-`shadow-sm` · `shadow` · `shadow-md` · `shadow-lg`
+## 6. Botones (sistema Hum)
 
-## 6. Iconografía
+Ver `src/styles/components/button.css`. Tres variantes:
 
-- Fuente: **Material Symbols Rounded** (cargada vía Google Fonts).
-- Uso exclusivo mediante el componente `src/components/ui/Icon.jsx`.
-- Tamaños habituales: 20px (acciones), 24px (nav), 40px (estados vacíos).
-- Accesibilidad: iconos decorativos con `aria-hidden`; iconos informativos con
-  `label` y `role="img"`.
+- **Push (`.btn`)**: fondo pear, color edge en la base, sombra de tierra. Lift 2px hover, press 3px active.
+- **Soft (`.btn--soft`)**: fondo cyan 12%, sin edge. Para acciones secundarias.
+- **Outline (`.btn--outline`)**: borde rule, hover se llena pear 8%.
 
-## 7. Inventario de componentes UI
+## 7. Iconografía
 
-| Componente     | Variantes / props                                       | Uso                           |
-| -------------- | ------------------------------------------------------- | ----------------------------- |
-| `Button`       | primary, secondary, outline, ghost · sm/md/lg · loading | Acciones                      |
-| `Card`         | —                                                       | Contenedores                  |
-| `Badge`        | default, primary, success, warning, info                | Etiquetas                     |
-| `Spinner`      | —                                                       | Cargas                        |
-| `Modal`        | open, onClose, title, footer                            | Diálogos                      |
-| `EmptyState`   | icon, title, description, action                        | Estados vacíos                |
-| `SearchInput`  | value, onChange                                         | Búsqueda                      |
-| `FilterSelect` | label, value, onChange, options                         | Filtros                       |
-| `ThemeToggle`  | —                                                       | Cambio de tema (ticket theme) |
+- Fuente: Material Symbols Rounded.
+- Componente `<Icon name="..." size={...} />`.
+- Tamaños: 20px (acciones), 22px (nav), 24px (hero), 40px (estados vacíos).
 
-## 8. Reglas de uso
+## 8. Inventario de componentes UI
 
-1. **Siempre tokens semánticos**, nunca colores hardcodeados.
-2. **Responsive con media queries** de Tailwind (`sm`, `md`, `lg`, `xl`);
-   el CSS propio debe usar `@media`.
-3. **HTML semántico**: `header`, `nav`, `main`, `footer`, `section`, `article`,
-   encabezados en orden.
-4. **Sin `innerHTML`**: nunca inyectar HTML inseguro.
-5. **Accesibilidad**: foco visible, `aria-label` en iconos informativos,
-   contraste AA.
-6. **Sin emojis** en el código; se usa `<Icon />`.
+| Componente     | Variantes                                                  | Uso                        |
+| -------------- | ---------------------------------------------------------- | -------------------------- |
+| `Button`       | primary, secondary, outline, ghost · sm/md/lg/xl · loading | Acciones                   |
+| `Card`         | —                                                          | Contenedores (radius 20px) |
+| `Badge`        | default, primary, secondary, pop, mint, lavender           | Etiquetas (uppercase mono) |
+| `Spinner`      | —                                                          | Cargas                     |
+| `EmptyState`   | icon, title, description, action                           | Estados vacíos             |
+| `SearchInput`  | value, onChange                                            | Búsqueda                   |
+| `FilterSelect` | label, value, onChange, options                            | Filtros                    |
+| `ThemeToggle`  | —                                                          | Cambio de tema             |
+
+## 9. Macroestructuras por página
+
+| Ruta             | Página         | Macroestructura | Notas                    |
+| ---------------- | -------------- | --------------- | ------------------------ |
+| `/`              | Home           | Marquee Hero    | Character moment CSS     |
+| `/ejercicios`    | Exercises      | Catalogue       | Color-shift card grid    |
+| `/favoritos`     | Favorites      | Catalogue       | Mismo que Exercises      |
+| `/ejercicio/:id` | ExerciseDetail | Long Document   | Prosa single-column 65ch |
+| `/comparar`      | Compare        | Spec-sheet      | Tabla de comparación     |
+| `*`              | NotFound       | Statement       | Mínimo, sin adornos      |
+
+## 10. Reglas de uso
+
+1. **Siempre tokens OKLCH**, nunca colores hardcodeados.
+2. **Sistema bloqueado**: toda página nueva lee `design.md` primero.
+3. **Sin serif** en ninguna parte. Sin blanco puro. Sin negro puro.
+4. **Sin emojis** en el código; se usa `<Icon />`.
+5. **Accesibilidad**: foco visible (`focus-visible` con outline de 3px), contraste AA.
+6. **Motion**: prefers-reduced-motion: reduce → opacity-only, ≤ 150ms.

@@ -64,7 +64,7 @@ describe('Exercises', () => {
   it('muestra el error con opción de reintentar', async () => {
     fetchExercises.mockRejectedValue(new Error('sin conexión'))
     renderWithRouter(<Exercises />, { route: '/ejercicios', path: '/ejercicios' })
-    expect(await screen.findByText('No se pudo cargar el catálogo')).toBeInTheDocument()
+    expect(await screen.findByText('No se pudo cargar')).toBeInTheDocument()
     expect(screen.getByText('sin conexión')).toBeInTheDocument()
   })
 

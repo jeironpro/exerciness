@@ -1,6 +1,6 @@
+/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 import Icon from './Icon.jsx'
 
-// Campo de búsqueda con icono integrado y botón de limpieza.
 const SearchInput = ({
   value = '',
   onChange,
@@ -12,14 +12,14 @@ const SearchInput = ({
     <Icon
       name="search"
       size={20}
-      className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-text-muted"
+      className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-ink-2"
     />
     <input
       type="search"
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      className="h-10 w-full rounded-md border border-border bg-surface pl-10 pr-3 text-sm text-text placeholder:text-text-muted focus:outline-none focus:ring-2 focus:ring-primary"
+      className="h-10 w-full rounded-input border border-rule bg-paper pl-10 pr-3 font-body text-sm text-ink placeholder:text-ink-2 focus:outline-none focus:ring-2 focus:ring-focus"
       {...props}
     />
   </div>

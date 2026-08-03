@@ -1,8 +1,8 @@
+/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 import Button from '@/components/ui/Button.jsx'
 import Icon from '@/components/ui/Icon.jsx'
 import { useFavoritesStore, selectIsFavorite } from '@/store/favoritesStore.js'
 
-// Botón para añadir o quitar un ejercicio de favoritos.
 const FavoriteButton = ({ exerciseId, className = '' }) => {
   const isFavorite = useFavoritesStore(selectIsFavorite(exerciseId))
   const toggleFavorite = useFavoritesStore((state) => state.toggleFavorite)

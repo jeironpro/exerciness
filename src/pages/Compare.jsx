@@ -1,3 +1,4 @@
+/* Hallmark · genre: playful · macrostructure: spec-sheet · theme: Hum · design-system: design.md · designed-as-app */
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { useExerciseStore } from '@/store/exerciseStore.js'
@@ -12,13 +13,11 @@ import EmptyState from '@/components/ui/EmptyState.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import Icon from '@/components/ui/Icon.jsx'
 
-// Comparador: tabla lado a lado de los ejercicios seleccionados.
 export default function Compare() {
   const { exercises, loading, error, load } = useExerciseStore()
   const ids = useCompareStore((state) => state.ids)
   const removeCompare = useCompareStore((state) => state.removeCompare)
 
-  // Carga el catálogo si aún no está disponible.
   useEffect(() => {
     const state = useExerciseStore.getState()
     if (state.exercises.length === 0 && !state.loading) state.load()
@@ -27,8 +26,8 @@ export default function Compare() {
   if (loading && exercises.length === 0) {
     return (
       <section className="flex flex-col items-center gap-4 py-24" aria-live="polite">
-        <Spinner className="h-8 w-8 text-primary" />
-        <p className="text-text-muted">Cargando el comparador...</p>
+        <Spinner className="h-8 w-8 text-accent" />
+        <p className="font-body text-ink-2">Cargando...</p>
       </section>
     )
   }
@@ -37,14 +36,10 @@ export default function Compare() {
     return (
       <EmptyState
         icon="error"
-        title="No se pudo cargar el comparador"
+        title="No se pudo cargar"
         description={error}
         action={
-          <button
-            type="button"
-            className="btn mt-2 bg-primary px-4 text-primary-contrast hover:bg-primary-hover"
-            onClick={() => load()}
-          >
+          <button type="button" className="btn" onClick={() => load()}>
             Reintentar
           </button>
         }
@@ -56,51 +51,54 @@ export default function Compare() {
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <header className="mb-6">
-        <h1 className="text-3xl font-bold text-text">Comparador</h1>
-        <p className="mt-1 text-text-muted">Compara hasta 4 ejercicios lado a lado.</p>
+      <header className="mb-8">
+        <span className="font-mono text-xs font-medium uppercase tracking-widest text-ink-2">
+          COMPARADOR
+        </span>
+        <h1 className="font-display text-3xl font-semibold text-ink">Comparar ejercicios</h1>
+        <p className="mt-1 font-body text-sm text-ink-2">Hasta 4 ejercicios lado a lado.</p>
       </header>
 
       {selected.length < 2 ? (
         <EmptyState
           icon="compare_arrows"
           title="Selecciona al menos dos ejercicios"
-          description="Añade ejercicios con el botón de comparación en el catálogo para verlos lado a lado."
+          description="Añade ejercicios con el botón de comparación en el catálogo."
           action={
-            <Link
-              to="/ejercicios"
-              className="btn mt-2 bg-primary px-4 text-primary-contrast hover:bg-primary-hover"
-            >
+            <Link to="/ejercicios" className="btn no-underline">
               Ir al catálogo
             </Link>
           }
         />
       ) : (
-        <div className="overflow-x-auto rounded-lg border border-border bg-surface shadow-sm">
-          <table className="w-full border-collapse text-sm">
+        <div className="overflow-x-auto rounded-card border border-rule bg-paper shadow-soft">
+          <table className="w-full border-collapse font-body text-sm">
             <caption className="sr-only">Comparación de ejercicios seleccionados</caption>
             <thead>
-              <tr className="border-b border-border">
-                <th scope="col" className="p-3 text-left font-medium text-text-muted">
-                  Ejercicio
+              <tr className="border-b border-rule">
+                <th
+                  scope="col"
+                  className="p-4 text-left font-mono text-xs font-medium uppercase tracking-widest text-ink-2"
+                >
+                  Atributo
                 </th>
                 {selected.map((exercise) => (
-                  <th scope="col" key={exercise.id} className="min-w-40 p-3 text-left align-top">
+                  <th scope="col" key={exercise.id} className="min-w-40 p-4 text-left align-top">
                     <div className="flex flex-col gap-2">
                       <img
                         src={exercise.image}
                         alt=""
-                        className="aspect-square w-full rounded-md object-cover"
+                        className="aspect-square w-full rounded-card object-cover"
                       />
                       <Link
                         to={`/ejercicio/${exercise.id}`}
-                        className="font-semibold text-primary hover:underline"
+                        className="font-display text-sm font-semibold text-accent-2 no-underline hover:underline"
                       >
                         {exercise.name}
                       </Link>
                       <button
                         type="button"
-                        className="inline-flex items-center gap-1 self-start text-xs text-text-muted hover:text-error"
+                        className="inline-flex items-center gap-1 self-start font-mono text-xs uppercase tracking-wider text-ink-2 hover:text-accent-3"
                         onClick={() => removeCompare(exercise.id)}
                       >
                         <Icon name="close" size={14} />
@@ -139,15 +137,17 @@ export default function Compare() {
   )
 }
 
-// Fila del comparador: etiqueta de atributo + valor por ejercicio.
 function CompareRow({ label, values }) {
   return (
-    <tr className="border-b border-border last:border-b-0">
-      <th scope="row" className="w-40 p-3 text-left align-top font-medium text-text-muted">
+    <tr className="border-b border-rule last:border-b-0">
+      <th
+        scope="row"
+        className="w-36 p-4 text-left align-top font-mono text-xs font-medium uppercase tracking-widest text-ink-2"
+      >
         {label}
       </th>
       {values.map((value, index) => (
-        <td key={index} className="p-3 align-top text-text">
+        <td key={index} className="p-4 align-top font-body text-ink">
           {value}
         </td>
       ))}

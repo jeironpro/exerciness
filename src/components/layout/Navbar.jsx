@@ -1,3 +1,4 @@
+/* Hallmark · genre: playful · macrostructure: N7 · theme: Hum · design-system: design.md · designed-as-app */
 import { NavLink } from 'react-router-dom'
 import Icon from '@/components/ui/Icon.jsx'
 import ThemeToggle from '@/components/ui/ThemeToggle.jsx'
@@ -10,30 +11,34 @@ const navLinks = [
   { to: '/comparar', label: 'Comparar' },
 ]
 
-// Barra de navegación principal con enlaces semánticos y contador de favoritos.
 export default function Navbar() {
   const favoritesCount = useFavoritesStore(selectFavoritesCount)
 
   return (
-    <header className="border-b border-border bg-surface">
-      <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-        <NavLink to="/" className="flex items-center gap-2 text-lg font-bold text-text">
-          <Icon name="fitness_center" size={24} className="text-primary" />
-          <span>exerciness</span>
+    <header className="border-b-2 border-rule bg-paper">
+      <nav className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+        <NavLink
+          to="/"
+          className="flex items-center gap-2 font-display text-lg font-bold uppercase tracking-wider text-ink no-underline"
+        >
+          <Icon name="fitness_center" size={22} className="text-accent" />
+          <span>EXERCINESS</span>
         </NavLink>
-        <ul className="flex items-center gap-4">
+        <ul className="flex items-center gap-6">
           {navLinks.map((link) => (
             <li key={link.to}>
               <NavLink
                 to={link.to}
                 className={({ isActive }) =>
-                  isActive ? 'font-semibold text-primary' : 'text-text-muted hover:text-text'
+                  `text-sm font-medium uppercase tracking-wider no-underline transition-colors ${
+                    isActive ? 'text-accent' : 'text-ink-2 hover:text-accent'
+                  }`
                 }
               >
                 {link.label}
                 {link.to === '/favoritos' && favoritesCount > 0 && (
                   <span
-                    className="ml-1 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-primary px-1 text-xs font-semibold text-primary-contrast"
+                    className="ml-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent-3 px-1 text-xs font-bold text-paper"
                     aria-label={`${favoritesCount} ${favoritesCount === 1 ? 'favorito' : 'favoritos'}`}
                   >
                     {favoritesCount}

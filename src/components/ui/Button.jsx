@@ -1,22 +1,20 @@
+/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 import Spinner from './Spinner.jsx'
 
-// Variantes de color del botón.
 const variants = {
-  primary: 'bg-primary text-primary-contrast hover:bg-primary-hover',
-  secondary:
-    'border border-border bg-surface-alt text-text hover:border-primary hover:text-primary',
-  outline: 'border border-primary text-primary hover:bg-primary hover:text-primary-contrast',
-  ghost: 'text-text-muted hover:bg-surface-alt hover:text-text',
+  primary: 'btn',
+  secondary: 'btn btn--soft',
+  outline: 'btn btn--outline',
+  ghost: 'btn btn--outline !shadow-none !border-rule',
 }
 
-// Tamaños disponibles.
 const sizes = {
-  sm: 'h-8 px-3 text-sm',
-  md: 'h-10 px-4 text-sm',
-  lg: 'h-12 px-6 text-base',
+  sm: 'px-3 py-1.5 text-sm',
+  md: 'px-4 py-2.5 text-sm',
+  lg: 'px-6 py-3.5 text-base',
+  xl: 'px-8 py-4 text-lg',
 }
 
-// Botón reutilizable con variante, tamaño y estado de carga.
 const Button = ({
   variant = 'primary',
   size = 'md',
@@ -31,7 +29,7 @@ const Button = ({
     type={type}
     disabled={disabled || loading}
     aria-busy={loading || undefined}
-    className={`btn ${variants[variant]} ${sizes[size]} ${className}`}
+    className={`${variants[variant]} ${sizes[size]} ${className}`}
     {...props}
   >
     {loading && <Spinner className="h-4 w-4" />}

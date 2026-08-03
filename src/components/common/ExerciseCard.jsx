@@ -1,21 +1,25 @@
+/* Hallmark · genre: playful · macrostructure: 11-catalogue · theme: Hum · design-system: design.md · designed-as-app */
 import { Link } from 'react-router-dom'
 import Card from '@/components/ui/Card.jsx'
 import Badge from '@/components/ui/Badge.jsx'
 import CompareButton from '@/components/common/CompareButton.jsx'
 import { getBodyPartLabel, getEquipmentLabel } from '@/utils/helpers.js'
 
-// Tarjeta de ejercicio: miniatura, nombre, etiquetas y acceso al comparador.
 const ExerciseCard = ({ exercise }) => (
-  <Card className="relative overflow-hidden transition-shadow hover:shadow-md">
-    <Link to={`/ejercicio/${exercise.id}`} className="block">
-      <img
-        src={exercise.image}
-        alt={exercise.name}
-        loading="lazy"
-        className="aspect-square w-full object-cover"
-      />
+  <Card className="group relative overflow-hidden transition-transform duration-220 ease-spring hover:-translate-y-1">
+    <Link to={`/ejercicio/${exercise.id}`} className="block no-underline">
+      <div className="overflow-hidden">
+        <img
+          src={exercise.image}
+          alt={exercise.name}
+          loading="lazy"
+          className="aspect-square w-full object-cover transition-transform duration-220 group-hover:scale-105"
+        />
+      </div>
       <div className="p-4">
-        <h3 className="font-semibold text-text">{exercise.name}</h3>
+        <h3 className="font-display text-base font-semibold leading-tight text-ink">
+          {exercise.name}
+        </h3>
         <div className="mt-2 flex flex-wrap gap-1.5">
           <Badge tone="primary">{getBodyPartLabel(exercise.body_part)}</Badge>
           <Badge>{getEquipmentLabel(exercise.equipment)}</Badge>

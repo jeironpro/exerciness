@@ -1,5 +1,6 @@
 import { NavLink } from 'react-router-dom'
 import Icon from '@/components/ui/Icon.jsx'
+import ThemeToggle from '@/components/ui/ThemeToggle.jsx'
 import { useFavoritesStore, selectFavoritesCount } from '@/store/favoritesStore.js'
 
 const navLinks = [
@@ -41,6 +42,9 @@ export default function Navbar() {
               </NavLink>
             </li>
           ))}
+          <li className="ml-2">
+            <ThemeToggle />
+          </li>
         </ul>
       </nav>
     </header>

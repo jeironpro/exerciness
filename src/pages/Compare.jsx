@@ -78,7 +78,7 @@ export default function Compare() {
               <tr className="border-b border-rule">
                 <th
                   scope="col"
-                  className="p-4 text-left font-mono text-xs font-medium uppercase tracking-widest text-ink-2"
+                  className="sticky left-0 z-20 bg-paper p-4 text-left font-mono text-xs font-medium uppercase tracking-widest text-ink-2"
                 >
                   Atributo
                 </th>
@@ -142,7 +142,7 @@ function CompareRow({ label, values }) {
     <tr className="border-b border-rule last:border-b-0">
       <th
         scope="row"
-        className="w-36 p-4 text-left align-top font-mono text-xs font-medium uppercase tracking-widest text-ink-2"
+        className="sticky left-0 z-10 w-36 bg-paper p-4 text-left align-top font-mono text-xs font-medium uppercase tracking-widest text-ink-2"
       >
         {label}
       </th>

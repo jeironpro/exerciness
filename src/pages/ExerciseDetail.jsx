@@ -85,7 +85,7 @@ export default function ExerciseDetail() {
           <Badge>{getEquipmentLabel(exercise.equipment)}</Badge>
           <Badge tone="secondary">{getTargetLabel(exercise.target)}</Badge>
         </div>
-        <div className="mt-4 flex items-start justify-between gap-4">
+        <div className="mt-4 flex flex-col items-start justify-between gap-3 sm:flex-row sm:items-center">
           <h1 className="font-display text-3xl font-semibold leading-tight text-ink">
             {exercise.name}
           </h1>

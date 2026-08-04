@@ -17,10 +17,10 @@ export default function Home() {
 
   return (
     <>
-      <section className="flex min-h-[80vh] flex-col items-center justify-center px-4 text-center">
+      <section className="flex min-h-[80vh] flex-col items-center justify-center overflow-hidden px-4 text-center">
         <div className="relative">
           <div
-            className="absolute -left-8 -top-8 h-16 w-16 rounded-full bg-accent opacity-60"
+            className="absolute -left-4 -top-4 h-14 w-14 rounded-full bg-accent opacity-60 sm:-left-8 sm:-top-8 sm:h-16 sm:w-16"
             aria-hidden="true"
           />
           <h1 className="font-display text-[clamp(2.5rem,6vw+1rem,5.5rem)] font-semibold leading-none tracking-tighter text-ink">
@@ -38,7 +38,7 @@ export default function Home() {
         <p className="mt-6 max-w-lg font-body text-lg text-ink-2">
           Más de 1.300 movimientos. Busca, filtra, guarda y compara. El gimnasio empieza aquí.
         </p>
-        <div className="mt-8 flex gap-4">
+        <div className="mt-8 flex w-full max-w-sm flex-col gap-3 sm:w-auto sm:max-w-none sm:flex-row sm:gap-4">
           <Link to="/ejercicios" className="btn no-underline">
             Explorar ahora
           </Link>

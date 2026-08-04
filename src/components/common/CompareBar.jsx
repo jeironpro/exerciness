@@ -14,8 +14,8 @@ const CompareBar = () => {
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-rule bg-paper-2 shadow-lift">
-      <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3">
-        <div className="flex -space-x-2" aria-hidden="true">
+      <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-3">
+        <div className="hidden -space-x-2 sm:flex" aria-hidden="true">
           {selected.slice(0, 4).map((exercise) => (
             <img
               key={exercise.id}

@@ -1,5 +1,10 @@
 /* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 @layer base {
+  html,
+  body {
+    overflow-x: clip;
+  }
+
   body {
     background: oklch(var(--color-paper));
     color: oklch(var(--color-ink));

@@ -27,7 +27,7 @@ describe('CompareBar', () => {
   it('muestra el contador y los enlaces con selección', () => {
     useCompareStore.setState({ ids: ['0001', '0002'] })
     renderWithRouter(<CompareBar />)
-    expect(screen.getByText(/2 ejercicios seleccionados/i)).toBeInTheDocument()
+    expect(screen.getByText(/2 seleccionados/i)).toBeInTheDocument()
     expect(screen.getByRole('link', { name: /comparar/i })).toHaveAttribute('href', '/comparar')
   })
 

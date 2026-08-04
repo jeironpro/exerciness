@@ -45,10 +45,10 @@ describe('ExerciseDetail', () => {
   it('permite reproducir la animación bajo demanda', async () => {
     const user = userEvent.setup()
     renderDetail()
-    const playButton = screen.getByRole('button', { name: /reproducir animación/i })
+    const playButton = screen.getByRole('button', { name: /reproducir/i })
     await user.click(playButton)
     expect(screen.getByRole('img', { name: 'Animación de 3/4 sit-up' })).toBeInTheDocument()
-    expect(screen.getByRole('button', { name: /pausar animación/i })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: /pausar/i })).toBeInTheDocument()
   })
 
   it('añade y quita favoritos desde el detalle', async () => {
@@ -67,9 +67,6 @@ describe('ExerciseDetail', () => {
 
   it('enlaza de vuelta al catálogo', () => {
     renderDetail()
-    expect(screen.getByRole('link', { name: /volver al catálogo/i })).toHaveAttribute(
-      'href',
-      '/ejercicios',
-    )
+    expect(screen.getByRole('link', { name: /volver/i })).toHaveAttribute('href', '/ejercicios')
   })
 })

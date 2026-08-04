@@ -13,8 +13,6 @@ describe('App', () => {
 
   it('muestra la página de inicio en la ruta raíz', () => {
     render(<App />)
-    expect(
-      screen.getByRole('heading', { name: /descubre tu rutina perfecta/i }),
-    ).toBeInTheDocument()
+    expect(screen.getByRole('heading', { name: /seis para empezar/i })).toBeInTheDocument()
   })
 })

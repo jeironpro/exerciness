@@ -1,0 +1,42 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "stamp": "/* Hallmark · genre: playful · macrostructure: marquee-hero+catalogue+long-document+spec-sheet+statement · theme: Hum · design-system: design.md · designed-as-app */",
+      "genre": "playful",
+      "theme": "Hum",
+      "macrostructure": "03-marquee-hero + 11-catalogue + 02-long-document + spec-sheet + statement",
+      "designMd": "design.md",
+      "scope": "app",
+      "files": [
+        "src/styles/tokens.css",
+        "src/styles/globals.css",
+        "src/styles/components/button.css",
+        "tailwind.config.js",
+        "index.html",
+        "src/components/layout/Navbar.jsx",
+        "src/components/ui/Badge.jsx",
+        "src/components/ui/Button.jsx",
+        "src/components/ui/Card.jsx",
+        "src/components/ui/EmptyState.jsx",
+        "src/components/ui/FilterSelect.jsx",
+        "src/components/ui/SearchInput.jsx",
+        "src/components/ui/Spinner.jsx",
+        "src/components/ui/Icon.jsx",
+        "src/components/ui/ThemeToggle.jsx",
+        "src/components/common/ExerciseCard.jsx",
+        "src/components/common/ExerciseVideo.jsx",
+        "src/components/common/FavoriteButton.jsx",
+        "src/components/common/CompareButton.jsx",
+        "src/components/common/CompareBar.jsx",
+        "src/components/common/ExerciseFilters.jsx",
+        "src/pages/Home.jsx",
+        "src/pages/Exercises.jsx",
+        "src/pages/Favorites.jsx",
+        "src/pages/ExerciseDetail.jsx",
+        "src/pages/Compare.jsx",
+        "src/pages/NotFound.jsx"
+      ]
+    }
+  ]
+}

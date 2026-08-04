@@ -10,6 +10,6 @@ describe('Badge', () => {
 
   it('aplica el tono primario', () => {
     render(<Badge tone="primary">Cardio</Badge>)
-    expect(screen.getByText('Cardio').className).toContain('text-primary')
+    expect(screen.getByText('Cardio').className).toContain('text-accent')
   })
 })

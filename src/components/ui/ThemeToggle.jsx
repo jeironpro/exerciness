@@ -1,7 +1,7 @@
+/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 import Icon from './Icon.jsx'
 import { useThemeStore, selectTheme, THEMES } from '@/store/themeStore.js'
 
-// Alternador de tema claro/oscuro.
 const ThemeToggle = () => {
   const theme = useThemeStore(selectTheme)
   const toggleTheme = useThemeStore((state) => state.toggleTheme)
@@ -10,7 +10,7 @@ const ThemeToggle = () => {
   return (
     <button
       type="button"
-      className="inline-flex h-9 w-9 items-center justify-center rounded-md border border-border bg-surface text-text-muted transition-colors hover:border-primary hover:text-primary"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-input border border-rule bg-paper text-ink-2 transition-colors hover:border-accent hover:text-accent focus-visible:outline-2 focus-visible:outline-focus"
       onClick={toggleTheme}
       aria-label={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}
       title={isDark ? 'Activar modo claro' : 'Activar modo oscuro'}

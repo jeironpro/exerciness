@@ -1,6 +1,11 @@
-// Contenedor de tarjeta reutilizable con borde y sombra por defecto.
+/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 const Card = ({ className = '', children, ...props }) => (
-  <div className={`rounded-lg border border-border bg-surface shadow-sm ${className}`} {...props}>
+  <div
+    className={`rounded-card bg-paper shadow-soft transition-shadow duration-220 ${
+      className.includes('hover:') ? '' : 'hover:shadow-lift'
+    } ${className}`}
+    {...props}
+  >
     {children}
   </div>
 )

@@ -1,16 +1,16 @@
-// Tonos disponibles para la etiqueta.
+/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 const tones = {
-  default: 'border border-border bg-surface-alt text-text-muted',
-  primary: 'bg-primary/10 text-primary',
-  success: 'bg-success/10 text-success',
-  warning: 'bg-warning/10 text-warning',
-  info: 'bg-info/10 text-info',
+  default: 'border border-rule bg-paper-2 text-ink-2',
+  primary: 'bg-accent/12 text-accent',
+  secondary: 'bg-accent-2/12 text-accent-2',
+  pop: 'bg-accent-3/12 text-accent-3',
+  mint: 'bg-mint/12 text-mint',
+  lavender: 'bg-lavender/12 text-lavender',
 }
 
-// Etiqueta compacta para mostrar categorías o estados.
 const Badge = ({ tone = 'default', className = '', children, ...props }) => (
   <span
-    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ${tones[tone]} ${className}`}
+    className={`inline-flex items-center rounded-pill px-2.5 py-0.5 font-mono text-xs font-medium uppercase tracking-wider ${tones[tone]} ${className}`}
     {...props}
   >
     {children}

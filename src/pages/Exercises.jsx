@@ -1,3 +1,4 @@
+/* Hallmark · genre: playful · macrostructure: 11-catalogue · theme: Hum · design-system: design.md · designed-as-app */
 import { useEffect } from 'react'
 import { useExerciseStore } from '@/store/exerciseStore.js'
 import { useFilterStore } from '@/store/filterStore.js'
@@ -7,12 +8,10 @@ import ExerciseFilters from '@/components/common/ExerciseFilters.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import EmptyState from '@/components/ui/EmptyState.jsx'
 
-// Catálogo completo de ejercicios con búsqueda, filtros y ordenación.
 export default function Exercises() {
   const { exercises, loading, error, load } = useExerciseStore()
   const filters = useFilterStore()
 
-  // Carga el dataset una única vez y lo cachea en el store.
   useEffect(() => {
     const state = useExerciseStore.getState()
     if (state.exercises.length === 0 && !state.loading) state.load()
@@ -21,8 +20,8 @@ export default function Exercises() {
   if (loading && exercises.length === 0) {
     return (
       <section className="flex flex-col items-center gap-4 py-24" aria-live="polite">
-        <Spinner className="h-8 w-8 text-primary" />
-        <p className="text-text-muted">Cargando el catálogo de ejercicios...</p>
+        <Spinner className="h-8 w-8 text-accent" />
+        <p className="font-body text-ink-2">Cargando el catálogo...</p>
       </section>
     )
   }
@@ -31,14 +30,10 @@ export default function Exercises() {
     return (
       <EmptyState
         icon="error"
-        title="No se pudo cargar el catálogo"
+        title="No se pudo cargar"
         description={error}
         action={
-          <button
-            type="button"
-            className="btn mt-2 bg-primary px-4 text-primary-contrast hover:bg-primary-hover"
-            onClick={() => load()}
-          >
+          <button type="button" className="btn" onClick={() => load()}>
             Reintentar
           </button>
         }
@@ -50,9 +45,12 @@ export default function Exercises() {
 
   return (
     <section className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
-      <header className="mb-6">
-        <h1 className="text-3xl font-bold text-text">Catálogo de ejercicios</h1>
-        <p className="mt-1 text-text-muted">{exercises.length} ejercicios disponibles.</p>
+      <header className="mb-8">
+        <span className="font-mono text-xs font-medium uppercase tracking-widest text-ink-2">
+          CATÁLOGO
+        </span>
+        <h1 className="font-display text-3xl font-semibold text-ink">Ejercicios</h1>
+        <p className="mt-1 font-body text-sm text-ink-2">{exercises.length} ejercicios en total.</p>
       </header>
       <ExerciseFilters exercises={exercises} />
       {visible.length === 0 ? (
@@ -63,8 +61,11 @@ export default function Exercises() {
         />
       ) : (
         <>
-          <p className="mb-4 mt-6 text-sm text-text-muted" aria-live="polite">
-            {visible.length} {visible.length === 1 ? 'ejercicio' : 'ejercicios'} encontrados.
+          <p
+            className="mb-4 mt-6 font-mono text-xs uppercase tracking-widest text-ink-2"
+            aria-live="polite"
+          >
+            {visible.length} {visible.length === 1 ? 'ejercicio' : 'ejercicios'} encontrados
           </p>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {visible.map((exercise) => (

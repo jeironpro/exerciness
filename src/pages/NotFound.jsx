@@ -1,15 +1,12 @@
+/* Hallmark · genre: playful · macrostructure: statement · theme: Hum · design-system: design.md · designed-as-app */
 import { Link } from 'react-router-dom'
 
-// Página 404 para rutas no encontradas.
 export default function NotFound() {
   return (
-    <section className="mx-auto flex max-w-7xl flex-col items-center gap-4 px-4 py-24 text-center sm:px-6 lg:px-8">
-      <h1 className="text-5xl font-bold text-text">404</h1>
-      <p className="text-text-muted">La página que buscas no existe.</p>
-      <Link
-        to="/"
-        className="rounded-md bg-primary px-4 py-2 font-medium text-primary-contrast hover:bg-primary-hover"
-      >
+    <section className="mx-auto flex max-w-lg flex-col items-center gap-6 px-4 py-24 text-center">
+      <span className="font-mono text-6xl font-bold text-accent-3">404</span>
+      <p className="font-body text-lg text-ink-2">No encontramos lo que buscas.</p>
+      <Link to="/" className="btn no-underline">
         Volver al inicio
       </Link>
     </section>

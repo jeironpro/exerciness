@@ -1,3 +1,4 @@
+// Tests del botón de añadir/quitar de la comparación.
 import { describe, it, expect, beforeEach } from 'vitest'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'

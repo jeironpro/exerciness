@@ -1,3 +1,4 @@
+// Tests del store de favoritos.
 import { describe, it, expect, beforeEach } from 'vitest'
 import { useFavoritesStore, selectIsFavorite, selectFavoritesCount } from './favoritesStore.js'
 

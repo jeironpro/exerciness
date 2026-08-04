@@ -1,3 +1,4 @@
+// Test del componente raíz App (renderizado del enrutador).
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import App from '@/App.jsx'

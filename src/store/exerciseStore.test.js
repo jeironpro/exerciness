@@ -1,3 +1,4 @@
+// Tests del store del catálogo de ejercicios.
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { useExerciseStore } from './exerciseStore.js'
 import { exercisesFixture } from '@/test/fixtures.js'

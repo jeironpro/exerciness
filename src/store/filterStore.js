@@ -1,14 +1,21 @@
+// Store de los filtros del catálogo: búsqueda, filtros y ordenación.
+// El estado vive en Zustand; las acciones actualizan un único campo cada una.
+
 import { create } from 'zustand'
 import { ALL } from '@/utils/constants.js'
 
-// Store de los filtros del catálogo: búsqueda, filtros y ordenación.
-export const useFilterStore = create((set) => ({
+// Valores iniciales compartidos por el estado inicial y reset().
+const DEFAULT_FILTERS = {
   search: '',
   bodyPart: ALL,
   equipment: ALL,
   target: ALL,
   muscleGroup: ALL,
   sortBy: 'name',
+}
+
+export const useFilterStore = create((set) => ({
+  ...DEFAULT_FILTERS,
 
   setSearch: (search) => set({ search }),
   setBodyPart: (bodyPart) => set({ bodyPart }),
@@ -16,13 +23,5 @@ export const useFilterStore = create((set) => ({
   setTarget: (target) => set({ target }),
   setMuscleGroup: (muscleGroup) => set({ muscleGroup }),
   setSortBy: (sortBy) => set({ sortBy }),
-  reset: () =>
-    set({
-      search: '',
-      bodyPart: ALL,
-      equipment: ALL,
-      target: ALL,
-      muscleGroup: ALL,
-      sortBy: 'name',
-    }),
+  reset: () => set(DEFAULT_FILTERS),
 }))

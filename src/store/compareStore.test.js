@@ -1,3 +1,4 @@
+// Tests del store del comparador.
 import { describe, it, expect, beforeEach } from 'vitest'
 import {
   useCompareStore,

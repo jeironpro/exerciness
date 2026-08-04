@@ -1,3 +1,4 @@
+// Tests de la tarjeta de superficie.
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import Card from './Card.jsx'

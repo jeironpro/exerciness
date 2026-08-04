@@ -1,8 +1,10 @@
-/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
+/* Hallmark · component: compare-bar · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 import { Link } from 'react-router-dom'
 import { useExerciseStore } from '@/store/exerciseStore.js'
 import { useCompareStore } from '@/store/compareStore.js'
 
+// Barra flotante fija al pie de la pantalla con los ejercicios seleccionados
+// para comparar. No se muestra hasta que hay al menos una selección.
 const CompareBar = () => {
   const ids = useCompareStore((state) => state.ids)
   const clear = useCompareStore((state) => state.clear)
@@ -10,11 +12,13 @@ const CompareBar = () => {
 
   if (ids.length === 0) return null
 
+  // Resuelve los ejercicios completos a partir de los ids seleccionados.
   const selected = exercises.filter((exercise) => ids.includes(exercise.id))
 
   return (
     <div className="fixed inset-x-0 bottom-0 z-40 border-t-2 border-rule bg-paper-2 shadow-lift">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center gap-3 px-4 py-3">
+        {/* Avatares apilados de los seleccionados (solo desktop). */}
         <div className="hidden -space-x-2 sm:flex" aria-hidden="true">
           {selected.slice(0, 4).map((exercise) => (
             <img

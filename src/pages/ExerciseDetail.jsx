@@ -1,7 +1,6 @@
 /* Hallmark · genre: playful · macrostructure: 02-long-document · theme: Hum · design-system: design.md · designed-as-app */
-import { useEffect } from 'react'
 import { Link, useParams } from 'react-router-dom'
-import { useExerciseStore } from '@/store/exerciseStore.js'
+import { useExercises } from '@/hooks/useExercises.js'
 import {
   getBodyPartLabel,
   getEquipmentLabel,
@@ -14,14 +13,10 @@ import Badge from '@/components/ui/Badge.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import EmptyState from '@/components/ui/EmptyState.jsx'
 
+// Detalle de un ejercicio: media, instrucciones en español y músculos implicados.
 export default function ExerciseDetail() {
   const { id } = useParams()
-  const { exercises, loading, error, load } = useExerciseStore()
-
-  useEffect(() => {
-    const state = useExerciseStore.getState()
-    if (state.exercises.length === 0 && !state.loading) state.load()
-  }, [load])
+  const { exercises, loading, error, load } = useExercises()
 
   if (loading && exercises.length === 0) {
     return (
@@ -47,6 +42,7 @@ export default function ExerciseDetail() {
     )
   }
 
+  // Busca el ejercicio por su id de ruta; si no existe, estado vacío.
   const exercise = exercises.find((item) => item.id === id)
 
   if (!exercise) {
@@ -64,11 +60,13 @@ export default function ExerciseDetail() {
     )
   }
 
+  // Instrucciones en español; si no hay pasos, se cae a la descripción.
   const steps = exercise.instruction_steps?.es ?? []
   const description = exercise.instructions?.es ?? ''
 
   return (
     <article className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
+      {/* Volver al catálogo. */}
       <Link
         to="/ejercicios"
         className="inline-flex items-center gap-1 font-body text-sm font-medium text-accent-2 no-underline hover:underline"
@@ -79,6 +77,7 @@ export default function ExerciseDetail() {
         Volver
       </Link>
 
+      {/* Cabecera: badges de clasificación, nombre y botón de favorito. */}
       <header className="mt-6">
         <div className="flex flex-wrap gap-2">
           <Badge tone="primary">{getBodyPartLabel(exercise.body_part)}</Badge>
@@ -94,10 +93,12 @@ export default function ExerciseDetail() {
       </header>
 
       <div className="mt-8 space-y-10">
+        {/* Media: miniatura/GIF con reproducción y atribución. */}
         <section className="flex flex-col items-center">
           <ExerciseVideo exercise={exercise} />
         </section>
 
+        {/* Instrucciones paso a paso en español. */}
         <section>
           <h2 className="font-body text-lg font-semibold text-ink">Instrucciones</h2>
           {steps.length > 0 ? (
@@ -118,6 +119,7 @@ export default function ExerciseDetail() {
           )}
         </section>
 
+        {/* Músculos principal y secundarios del ejercicio. */}
         <section className="rounded-card border border-rule bg-paper-2 p-5">
           <h2 className="font-body text-base font-semibold text-ink">Músculos implicados</h2>
           <dl className="mt-3 space-y-3 font-body text-sm">

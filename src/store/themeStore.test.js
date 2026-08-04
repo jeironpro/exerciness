@@ -1,3 +1,4 @@
+// Tests del store del tema claro/oscuro.
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { useThemeStore, selectTheme, THEMES } from './themeStore.js'
 

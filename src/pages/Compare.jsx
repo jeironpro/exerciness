@@ -1,7 +1,6 @@
 /* Hallmark · genre: playful · macrostructure: spec-sheet · theme: Hum · design-system: design.md · designed-as-app */
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useExerciseStore } from '@/store/exerciseStore.js'
+import { useExercises } from '@/hooks/useExercises.js'
 import { useCompareStore } from '@/store/compareStore.js'
 import {
   getBodyPartLabel,
@@ -13,15 +12,11 @@ import EmptyState from '@/components/ui/EmptyState.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import Icon from '@/components/ui/Icon.jsx'
 
+// Comparador: tabla lado a lado con los atributos de los ejercicios elegidos.
 export default function Compare() {
-  const { exercises, loading, error, load } = useExerciseStore()
+  const { exercises, loading, error, load } = useExercises()
   const ids = useCompareStore((state) => state.ids)
   const removeCompare = useCompareStore((state) => state.removeCompare)
-
-  useEffect(() => {
-    const state = useExerciseStore.getState()
-    if (state.exercises.length === 0 && !state.loading) state.load()
-  }, [load])
 
   if (loading && exercises.length === 0) {
     return (
@@ -47,6 +42,7 @@ export default function Compare() {
     )
   }
 
+  // Ejercicios seleccionados, en el orden en que se añadieron.
   const selected = exercises.filter((exercise) => ids.includes(exercise.id))
 
   return (
@@ -59,6 +55,7 @@ export default function Compare() {
         <p className="mt-1 font-body text-sm text-ink-2">Hasta 4 ejercicios lado a lado.</p>
       </header>
 
+      {/* Se necesitan al menos dos ejercicios para comparar. */}
       {selected.length < 2 ? (
         <EmptyState
           icon="compare_arrows"
@@ -76,12 +73,14 @@ export default function Compare() {
             <caption className="sr-only">Comparación de ejercicios seleccionados</caption>
             <thead>
               <tr className="border-b border-rule">
+                {/* Primera columna fija con los nombres de atributo. */}
                 <th
                   scope="col"
                   className="sticky left-0 z-20 bg-paper p-4 text-left font-mono text-xs font-medium uppercase tracking-widest text-ink-2"
                 >
                   Atributo
                 </th>
+                {/* Una columna por ejercicio: miniatura, enlace y botón de quitar. */}
                 {selected.map((exercise) => (
                   <th scope="col" key={exercise.id} className="min-w-40 p-4 text-left align-top">
                     <div className="flex flex-col gap-2">
@@ -109,6 +108,7 @@ export default function Compare() {
                 ))}
               </tr>
             </thead>
+            {/* Filas de atributos traducidos, una por campo comparado. */}
             <tbody>
               <CompareRow
                 label="Grupo corporal"
@@ -137,6 +137,7 @@ export default function Compare() {
   )
 }
 
+// Fila de la tabla: una etiqueta fija a la izquierda y un valor por ejercicio.
 function CompareRow({ label, values }) {
   return (
     <tr className="border-b border-rule last:border-b-0">

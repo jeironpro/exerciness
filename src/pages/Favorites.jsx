@@ -1,20 +1,15 @@
 /* Hallmark · genre: playful · macrostructure: 11-catalogue · theme: Hum · design-system: design.md · designed-as-app */
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useExerciseStore } from '@/store/exerciseStore.js'
+import { useExercises } from '@/hooks/useExercises.js'
 import { useFavoritesStore } from '@/store/favoritesStore.js'
 import ExerciseCard from '@/components/common/ExerciseCard.jsx'
 import EmptyState from '@/components/ui/EmptyState.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 
+// Página de favoritos: ejercicios guardados, persistidos en localStorage.
 export default function Favorites() {
-  const { exercises, loading, error, load } = useExerciseStore()
+  const { exercises, loading, error, load } = useExercises()
   const ids = useFavoritesStore((state) => state.ids)
-
-  useEffect(() => {
-    const state = useExerciseStore.getState()
-    if (state.exercises.length === 0 && !state.loading) state.load()
-  }, [load])
 
   if (loading && exercises.length === 0) {
     return (
@@ -40,6 +35,7 @@ export default function Favorites() {
     )
   }
 
+  // Resuelve los ejercicios completos a partir de los ids guardados.
   const favorites = exercises.filter((exercise) => ids.includes(exercise.id))
 
   return (

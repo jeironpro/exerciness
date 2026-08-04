@@ -100,8 +100,8 @@ src/
 ├── components/
 │   ├── common/    ExerciseCard, ExerciseFilters, FavoriteButton, CompareButton, CompareBar...
 │   ├── layout/    Layout, Navbar, Footer
-│   └── ui/        Kit de diseño: Button, Card, Badge, Modal, Icon, ...
-├── hooks/         useFetch (genérico)
+│   └── ui/        Kit de diseño: Button, Card, Badge, Icon, ...
+├── hooks/         useExercises (carga del catálogo)
 ├── pages/         Home, Exercises, ExerciseDetail, Favorites, Compare, NotFound
 ├── routes/        Definición central de rutas
 ├── services/      exerciseService (acceso a datos)

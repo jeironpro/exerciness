@@ -1,3 +1,4 @@
+/* Hallmark · component: exercise-filters · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 import SearchInput from '@/components/ui/SearchInput.jsx'
 import FilterSelect from '@/components/ui/FilterSelect.jsx'
 import { useFilterStore } from '@/store/filterStore.js'
@@ -10,7 +11,9 @@ import {
 } from '@/utils/helpers.js'
 import { SORT_OPTIONS } from '@/utils/constants.js'
 
-// Barra de filtros y ordenación del catálogo de ejercicios.
+// Barra de búsqueda, filtros y ordenación del catálogo de ejercicios.
+// Las opciones de cada select se derivan de los valores presentes en el dataset
+// y el estado se delega en useFilterStore.
 const ExerciseFilters = ({ exercises }) => {
   const {
     search,
@@ -35,6 +38,7 @@ const ExerciseFilters = ({ exercises }) => {
         placeholder="Buscar ejercicio por nombre..."
         aria-label="Buscar ejercicio"
       />
+      {/* Cuadrícula de selects: cada uno actualiza un campo del store. */}
       <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5">
         <FilterSelect
           label="Grupo corporal"

@@ -1,7 +1,9 @@
-/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
+/* Hallmark · component: theme-toggle · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 import Icon from './Icon.jsx'
 import { useThemeStore, selectTheme, THEMES } from '@/store/themeStore.js'
 
+// Alternador de tema claro/oscuro. El estado vive en useThemeStore
+// (persistido en localStorage) y aplica la clase .dark en el <html>.
 const ThemeToggle = () => {
   const theme = useThemeStore(selectTheme)
   const toggleTheme = useThemeStore((state) => state.toggleTheme)

@@ -1,22 +1,19 @@
 /* Hallmark · genre: playful · macrostructure: 03-marquee-hero · theme: Hum · design-system: design.md · designed-as-app */
-import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useExerciseStore } from '@/store/exerciseStore.js'
+import { useExercises } from '@/hooks/useExercises.js'
 import ExerciseCard from '@/components/common/ExerciseCard.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 
+// Página de inicio: hero de presentación y una selección de ejercicios destacados.
 export default function Home() {
-  const { exercises, loading, load } = useExerciseStore()
+  const { exercises, loading } = useExercises()
 
-  useEffect(() => {
-    const state = useExerciseStore.getState()
-    if (state.exercises.length === 0 && !state.loading) state.load()
-  }, [load])
-
+  // Muestra solo los primeros seis ejercicios del catálogo.
   const featured = exercises.slice(0, 6)
 
   return (
     <>
+      {/* Hero: titular de marca con CTA a las secciones principales. */}
       <section className="flex min-h-[80vh] flex-col items-center justify-center overflow-hidden px-4 text-center">
         <div className="relative">
           <div
@@ -48,6 +45,7 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Destacados: seis ejercicios de muestra mientras se cargan o ya cargados. */}
       <section className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="mb-8 flex items-baseline gap-3">
           <span className="font-mono text-xs font-medium uppercase tracking-widest text-ink-2">

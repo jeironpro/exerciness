@@ -1,6 +1,8 @@
+/* Hallmark · component: error-boundary · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 import { Component } from 'react'
 
 // Captura errores de renderizado y muestra un fallback en lugar de romper la app.
+// Se usa como errorElement en el router para cualquier ruta de la aplicación.
 export default class ErrorBoundary extends Component {
   state = { hasError: false }
 
@@ -17,14 +19,15 @@ export default class ErrorBoundary extends Component {
   render() {
     if (this.state.hasError) {
       return (
-        <main className="flex min-h-screen flex-col items-center justify-center gap-4 px-4">
-          <h1 className="text-2xl font-bold text-text">Algo salió mal</h1>
-          <p className="text-text-muted">
+        <main className="flex min-h-screen flex-col items-center justify-center gap-4 bg-paper px-4">
+          <span className="font-mono text-6xl font-bold text-accent-3">Error</span>
+          <h1 className="font-display text-2xl font-semibold text-ink">Algo salió mal</h1>
+          <p className="max-w-md text-center font-body text-sm text-ink-2">
             Hubo un error inesperado. Recarga la página para continuar.
           </p>
           <button
             type="button"
-            className="rounded-md bg-primary px-4 py-2 font-medium text-primary-contrast hover:bg-primary-hover"
+            className="btn btn--outline"
             onClick={() => window.location.reload()}
           >
             Recargar

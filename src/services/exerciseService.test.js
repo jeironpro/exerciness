@@ -1,3 +1,4 @@
+// Tests del servicio de datos del catálogo.
 import { describe, it, expect, afterEach, vi } from 'vitest'
 import { fetchExercises } from './exerciseService.js'
 

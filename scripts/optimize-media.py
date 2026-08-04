@@ -138,7 +138,7 @@ def main():
                     skipped += 1
                     continue
             cropped += 1
-            print(f'{os.path.basename(src_path)}: {image.size} -> {box}')
+            print(f'{os.path.basename(src_path)}: {box[2] - box[0]}x{box[3] - box[1]}')
             continue
 
         box = crop_gif(src_path, dst_path, args.tol, args.pad, magick)

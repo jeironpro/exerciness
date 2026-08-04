@@ -1,3 +1,4 @@
+// Tests de la barra flotante del comparador.
 import { describe, it, expect, beforeEach } from 'vitest'
 import { screen } from '@testing-library/react'
 import userEvent from '@testing-library/user-event'

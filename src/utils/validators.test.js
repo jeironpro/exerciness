@@ -1,3 +1,4 @@
+// Tests de los validadores del dataset.
 import { describe, it, expect } from 'vitest'
 import { isValidExercise } from './validators.js'
 import { exerciseFixture } from '@/test/fixtures.js'

@@ -1,3 +1,5 @@
+/* Hallmark · component: footer · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
+// Pie de página simple con el aviso de copyright.
 export default function Footer() {
   return (
     <footer className="border-t border-rule bg-paper-2">

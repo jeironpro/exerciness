@@ -1,3 +1,4 @@
+// Tests del script de optimización de la media (recorte de GIFs).
 import { describe, it, expect, beforeAll } from 'vitest'
 import { execFile, execFileSync } from 'node:child_process'
 import { promisify } from 'node:util'

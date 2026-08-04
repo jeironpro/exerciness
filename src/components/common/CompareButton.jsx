@@ -1,12 +1,16 @@
-/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
+/* Hallmark · component: compare-button · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 import Icon from '@/components/ui/Icon.jsx'
 import { useCompareStore, selectIsComparing, selectCompareCount } from '@/store/compareStore.js'
 
+// Botón para añadir/quitar un ejercicio de la comparación.
+// Muestra su estado (pulsado = en comparación) y deshabilita la acción
+// visualmente cuando se alcanza el máximo de elementos permitidos.
 const CompareButton = ({ exerciseId, compact = false, className = '' }) => {
   const isComparing = useCompareStore(selectIsComparing(exerciseId))
   const compareCount = useCompareStore(selectCompareCount)
   const maxItems = useCompareStore((state) => state.maxItems)
   const toggleCompare = useCompareStore((state) => state.toggleCompare)
+  // En el límite solo si el ejercicio NO está ya en la comparación.
   const atLimit = !isComparing && compareCount >= maxItems
 
   return (

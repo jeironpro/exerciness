@@ -1,3 +1,4 @@
+// Tests del icono accesible.
 import { describe, it, expect } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import Icon from './Icon.jsx'

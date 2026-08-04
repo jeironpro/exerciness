@@ -1,3 +1,6 @@
+// Configuración de Tailwind: los colores y radios mapean a las variables
+// CSS definidas en src/styles/tokens.css (sistema Hum). Así los utilitarios
+// de Tailwind y los tokens CSS comparten la misma paleta.
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ['./index.html', './src/**/*.{js,jsx}'],

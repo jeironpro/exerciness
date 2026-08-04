@@ -1,3 +1,4 @@
+// Tests de las utilidades de helpers (etiquetas, filtrado y ordenación).
 import { describe, it, expect } from 'vitest'
 import {
   capitalize,

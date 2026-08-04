@@ -1,7 +1,9 @@
-/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
+/* Hallmark · component: exercise-video · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 import { useState } from 'react'
 import Icon from '@/components/ui/Icon.jsx'
 
+// Media de un ejercicio: miniatura estática que alterna con el GIF animado
+// al pulsar Reproducir/Pausar. Muestra la atribución obligatoria © Gym visual.
 const ExerciseVideo = ({ exercise }) => {
   const [playing, setPlaying] = useState(false)
 

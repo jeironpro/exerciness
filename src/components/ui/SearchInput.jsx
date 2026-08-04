@@ -1,6 +1,7 @@
-/* Hallmark · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
+/* Hallmark · component: search-input · genre: playful · theme: Hum · design-system: design.md · designed-as-app */
 import Icon from './Icon.jsx'
 
+// Campo de búsqueda con icono de lupa superpuesto a la izquierda.
 const SearchInput = ({
   value = '',
   onChange,

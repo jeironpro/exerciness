@@ -1,3 +1,4 @@
+// Tests de la página de favoritos.
 import { describe, it, expect, beforeEach } from 'vitest'
 import { screen } from '@testing-library/react'
 import { renderWithRouter } from '@/test/utils.jsx'

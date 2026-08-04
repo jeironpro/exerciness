@@ -74,7 +74,7 @@ El puerto se cambia con `PORT=9090 docker compose up --build`.
 | `yarn media:optimize` | Optimiza los GIFs de `public/videos/` |
 | `yarn lint`           | ESLint                                |
 | `yarn format:check`   | Verifica el formato con Prettier      |
-| `yarn test`           | Vitest (102 tests)                    |
+| `yarn test`           | Vitest (100 tests)                    |
 
 ## Documentación
 

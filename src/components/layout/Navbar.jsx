@@ -1,10 +1,11 @@
-/* Hallmark · genre: playful · macrostructure: N7 · theme: Hum · design-system: design.md · designed-as-app */
+/* Hallmark · component: navbar · genre: playful · macrostructure: N7 · theme: Hum · design-system: design.md · designed-as-app */
 import { useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import Icon from '@/components/ui/Icon.jsx'
 import ThemeToggle from '@/components/ui/ThemeToggle.jsx'
 import { useFavoritesStore, selectFavoritesCount } from '@/store/favoritesStore.js'
 
+// Enlaces del menú principal, compartidos por las versiones desktop y móvil.
 const navLinks = [
   { to: '/', label: 'Inicio' },
   { to: '/ejercicios', label: 'Ejercicios' },
@@ -12,6 +13,17 @@ const navLinks = [
   { to: '/comparar', label: 'Comparar' },
 ]
 
+// Contador de favoritos mostrado junto al enlace correspondiente.
+const FavoritesBadge = ({ count }) => (
+  <span
+    className="ml-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent-3 px-1 text-xs font-bold text-paper"
+    aria-label={`${count} ${count === 1 ? 'favorito' : 'favoritos'}`}
+  >
+    {count}
+  </span>
+)
+
+// Enlace con estilo activo; resalta el enlace de la ruta actual.
 const NavLinkItem = ({ link, favoritesCount }) => (
   <NavLink
     to={link.to}
@@ -22,17 +34,11 @@ const NavLinkItem = ({ link, favoritesCount }) => (
     }
   >
     {link.label}
-    {link.to === '/favoritos' && favoritesCount > 0 && (
-      <span
-        className="ml-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent-3 px-1 text-xs font-bold text-paper"
-        aria-label={`${favoritesCount} ${favoritesCount === 1 ? 'favorito' : 'favoritos'}`}
-      >
-        {favoritesCount}
-      </span>
-    )}
+    {link.to === '/favoritos' && favoritesCount > 0 && <FavoritesBadge count={favoritesCount} />}
   </NavLink>
 )
 
+// Navegación superior con menú hamburguesa en pantallas pequeñas.
 export default function Navbar() {
   const favoritesCount = useFavoritesStore(selectFavoritesCount)
   const [open, setOpen] = useState(false)
@@ -51,6 +57,7 @@ export default function Navbar() {
           <span>EXERCINESS</span>
         </NavLink>
 
+        {/* Menú de escritorio: enlaces + alternador de tema. */}
         <ul className="hidden items-center gap-6 md:flex">
           {navLinks.map((link) => (
             <li key={link.to}>
@@ -62,6 +69,7 @@ export default function Navbar() {
           </li>
         </ul>
 
+        {/* Controles móviles: tema + botón del menú hamburguesa. */}
         <div className="flex items-center gap-2 md:hidden">
           <ThemeToggle />
           <button
@@ -80,6 +88,7 @@ export default function Navbar() {
         </div>
       </nav>
 
+      {/* Panel desplegable móvil: se muestra solo cuando el menú está abierto. */}
       {open && (
         <div
           id="nav-mobile-menu"
@@ -100,12 +109,7 @@ export default function Navbar() {
                 >
                   {link.label}
                   {link.to === '/favoritos' && favoritesCount > 0 && (
-                    <span
-                      className="ml-1.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-accent-3 px-1 text-xs font-bold text-paper"
-                      aria-label={`${favoritesCount} ${favoritesCount === 1 ? 'favorito' : 'favoritos'}`}
-                    >
-                      {favoritesCount}
-                    </span>
+                    <FavoritesBadge count={favoritesCount} />
                   )}
                 </NavLink>
               </li>

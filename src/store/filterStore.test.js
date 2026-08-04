@@ -1,3 +1,4 @@
+// Tests del store de filtros del catálogo.
 import { describe, it, expect, beforeEach } from 'vitest'
 import { useFilterStore } from './filterStore.js'
 import { ALL } from '@/utils/constants.js'

@@ -1,6 +1,5 @@
 /* Hallmark · genre: playful · macrostructure: 11-catalogue · theme: Hum · design-system: design.md · designed-as-app */
-import { useEffect } from 'react'
-import { useExerciseStore } from '@/store/exerciseStore.js'
+import { useExercises } from '@/hooks/useExercises.js'
 import { useFilterStore } from '@/store/filterStore.js'
 import { filterExercises, sortExercises } from '@/utils/helpers.js'
 import ExerciseCard from '@/components/common/ExerciseCard.jsx'
@@ -8,15 +7,12 @@ import ExerciseFilters from '@/components/common/ExerciseFilters.jsx'
 import Spinner from '@/components/ui/Spinner.jsx'
 import EmptyState from '@/components/ui/EmptyState.jsx'
 
+// Catálogo completo: filtros, ordenación y cuadrícula de ejercicios.
 export default function Exercises() {
-  const { exercises, loading, error, load } = useExerciseStore()
+  const { exercises, loading, error, load } = useExercises()
   const filters = useFilterStore()
 
-  useEffect(() => {
-    const state = useExerciseStore.getState()
-    if (state.exercises.length === 0 && !state.loading) state.load()
-  }, [load])
-
+  // Carga en curso sin datos previos: pantalla de carga.
   if (loading && exercises.length === 0) {
     return (
       <section className="flex flex-col items-center gap-4 py-24" aria-live="polite">
@@ -26,6 +22,7 @@ export default function Exercises() {
     )
   }
 
+  // Error de carga sin datos previos: mensaje con opción de reintentar.
   if (error && exercises.length === 0) {
     return (
       <EmptyState
@@ -41,6 +38,7 @@ export default function Exercises() {
     )
   }
 
+  // Aplica búsqueda + filtros y luego ordena el resultado visible.
   const visible = sortExercises(filterExercises(exercises, filters), filters.sortBy)
 
   return (
@@ -52,7 +50,9 @@ export default function Exercises() {
         <h1 className="font-display text-3xl font-semibold text-ink">Ejercicios</h1>
         <p className="mt-1 font-body text-sm text-ink-2">{exercises.length} ejercicios en total.</p>
       </header>
+
       <ExerciseFilters exercises={exercises} />
+
       {visible.length === 0 ? (
         <EmptyState
           icon="search_off"
@@ -67,6 +67,7 @@ export default function Exercises() {
           >
             {visible.length} {visible.length === 1 ? 'ejercicio' : 'ejercicios'} encontrados
           </p>
+          {/* Cuadrícula de tarjetas del resultado filtrado. */}
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {visible.map((exercise) => (
               <ExerciseCard key={exercise.id} exercise={exercise} />

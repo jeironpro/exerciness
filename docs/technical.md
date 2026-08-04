@@ -50,7 +50,9 @@ store/exerciseStore.js  (Zustand, carga una única vez y cachea)
 Páginas y componentes
 ```
 
-El dataset fuente vive fuera del repo en `exercises-dataset-main/` (ignorado).
+El dataset fuente vive fuera del repo en `exercises-dataset-main/` (ignorado) y
+procede de [exercises-dataset](https://github.com/hasaneyldrm/exercises-dataset)
+de [@hasaneyldrm](https://github.com/hasaneyldrm).
 El script `yarn data:sync` copia `data/exercises.json`, `images/` y `videos/` a
 `public/`, que sí está versionado para que el build de CI no dependa del dataset
 local.
